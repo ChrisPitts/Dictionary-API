@@ -92,7 +92,14 @@ function generateDefinitions(data) {
 		meaning.definitions.forEach((definition) => {
 			let item = document.createElement('li');
 			item.innerHTML = definition.definition;
-			list.appendChild(item);
+            list.appendChild(item);
+            if (definition.example)
+            {
+                let exampleParagraph = document.createElement('p');
+                exampleParagraph.classList.add('example');
+                exampleParagraph.innerHTML = `Example: "${definition.example}"`;
+                list.appendChild(exampleParagraph);
+            }
 		});
 
 		// GENERATE SYNONYMS

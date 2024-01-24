@@ -46,6 +46,14 @@ function generateHTML(data) {
 
 	generateWordSection(data);
 	generateDefinitions(data);
+
+	
+    if (data.sourceUrls.length != 0)
+    {
+        let sourceParagraph = document.createElement('p');
+        sourceParagraph.innerHTML = `Source: <a href=${data.sourceUrls[0]}>${data.sourceUrls[0]}</a>`;
+        container.appendChild(sourceParagraph);
+	}
 }
 
 function generateWordSection(data) {
@@ -92,14 +100,13 @@ function generateDefinitions(data) {
 		meaning.definitions.forEach((definition) => {
 			let item = document.createElement('li');
 			item.innerHTML = definition.definition;
-            list.appendChild(item);
-            if (definition.example)
-            {
-                let exampleParagraph = document.createElement('p');
-                exampleParagraph.classList.add('example');
-                exampleParagraph.innerHTML = `Example: "${definition.example}"`;
-                list.appendChild(exampleParagraph);
-            }
+			list.appendChild(item);
+			if (definition.example) {
+				let exampleParagraph = document.createElement('p');
+				exampleParagraph.classList.add('example');
+				exampleParagraph.innerHTML = `Example: "${definition.example}"`;
+				list.appendChild(exampleParagraph);
+			}
 		});
 
 		// GENERATE SYNONYMS
